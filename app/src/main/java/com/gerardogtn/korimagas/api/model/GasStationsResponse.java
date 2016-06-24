@@ -12,7 +12,7 @@ public class GasStationsResponse {
   private boolean mIsSuccess = false;
 
   @SerializedName("stations")
-  private ArrayList<GasStationsResponse> mGasStations;
+  private ArrayList<GasStationResponse> mGasStations;
 
   public GasStationsResponse() {
 
@@ -22,7 +22,7 @@ public class GasStationsResponse {
     return mIsSuccess;
   }
 
-  public ArrayList<GasStationsResponse> getGasStations() {
+  public ArrayList<GasStationResponse> getGasStations() {
     return mGasStations;
   }
 }
