@@ -1,0 +1,77 @@
+package com.gerardogtn.korimagas.ui.activity;
+
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import butterknife.BindView;
+import butterknife.OnClick;
+import com.gerardogtn.korimagas.R;
+import com.gerardogtn.korimagas.contract.GasStationsContract;
+import com.gerardogtn.korimagas.data.GasStation;
+import com.gerardogtn.korimagas.presenter.GasStationsPresenter;
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+/**
+ * Created by gerardogtn on 6/24/16.
+ */
+public class GasStationsActivity extends AppCompatActivity implements GasStationsContract.View {
+
+  private GasStationsContract.Presenter mPresenter;
+
+  @BindView(R.id.toolbar) Toolbar mToolbar;
+
+  @BindView(R.id.container_gas_stations) View mGasStationsView;
+  @BindView(R.id.container_no_gas_stations) View mNoGasStationsView;
+  @BindView(R.id.container_progress_bar) View mProgressBarView;
+
+  @BindView(R.id.list_gas_stations) RecyclerView mGasStationsRecyclerView;
+
+  @Override public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    super.onCreate(savedInstanceState, persistentState);
+    setContentView(R.layout.activity_gas_stations);
+    mPresenter = new GasStationsPresenter(this);
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    mPresenter.start();
+  }
+
+  @Override public void setPresenter(GasStationsContract.Presenter presenter) {
+    mPresenter = checkNotNull(presenter);
+  }
+
+  @Override public void showLoadingIndicator() {
+    mProgressBarView.setVisibility(View.VISIBLE);
+    mNoGasStationsView.setVisibility(View.INVISIBLE);
+    mGasStationsView.setVisibility(View.INVISIBLE);
+  }
+
+  @Override public void showNoGasStations() {
+    mProgressBarView.setVisibility(View.INVISIBLE);
+    mNoGasStationsView.setVisibility(View.VISIBLE);
+    mGasStationsView.setVisibility(View.INVISIBLE);
+  }
+
+  @Override public void showGasStations(@NonNull List<GasStation> gasStations) {
+    mProgressBarView.setVisibility(View.INVISIBLE);
+    mNoGasStationsView.setVisibility(View.INVISIBLE);
+    mGasStationsView.setVisibility(View.VISIBLE);
+
+    // TODO: Populate recyclerview.
+  }
+
+  @Override public void showGasStationDetail(@NonNull GasStation gasStation) {
+    // TODO: Launch intent to GasStationDetail.
+  }
+
+  @OnClick(R.id.txt_no_gas_stations) public void onNoGasStationsTextClick() {
+    mPresenter.loadGasStations();
+  }
+}

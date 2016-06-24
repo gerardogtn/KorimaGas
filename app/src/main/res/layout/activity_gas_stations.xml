@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?android:actionBarSize"
+      android:background="@color/colorPrimaryDark"
+      />
+
+  <LinearLayout
+      android:id="@+id/container_gas_stations"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/toolbar"
+      android:orientation="vertical"
+      android:visibility="invisible"
+      tools:visibility="invisible"
+      >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Routes available! :D"
+        android:gravity="center|center"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_gas_stations"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/container_no_gas_stations"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/toolbar"
+      android:orientation="vertical"
+      android:visibility="invisible"
+      tools:visibility="invisible"
+      >
+
+    <TextView
+        android:id="@+id/txt_no_gas_stations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="There are no gas stations available :("
+        android:gravity="center|center"
+        />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/container_progress_bar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/toolbar"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:visibility="visible"
+      tools:visibility="visible"
+      >
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        />
+
+  </LinearLayout>
+
+</RelativeLayout>
