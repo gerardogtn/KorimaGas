@@ -1,5 +1,6 @@
 package com.gerardogtn.korimagas.data;
 
+import com.gerardogtn.korimagas.api.model.GasStationResponse;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import java.util.Date;
  */
 public class GasStation {
 
+    private int mId = -1;
     private boolean mHasGas = false;
     private Date mLastUpdate = Calendar.getInstance().getTime();
     private String mName = "";
@@ -18,23 +20,28 @@ public class GasStation {
 
     }
 
-    public GasStation(boolean mHasGas, Date mLastUpdate, String mName, String mDirections, String mLastMessage) {
+    public GasStation(GasStationResponse gasStationResponse) {
+        this.mId = gasStationResponse.getId();
+        this.mHasGas = gasStationResponse.isGasAvailable();
+        this.mLastUpdate = gasStationResponse.getLastUpdate();
+        this.mName = gasStationResponse.getName();
+        this.mDirections = gasStationResponse.getAddress();
+        this.mLastMessage = gasStationResponse.getLastMessage();
+    }
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setHasGas(boolean mHasGas) {
         this.mHasGas = mHasGas;
-        this.mLastUpdate = mLastUpdate;
-        this.mName = mName;
-        this.mDirections = mDirections;
-        this.mLastMessage = mLastMessage;
     }
 
-    public void setmHasGas(boolean mHasGas) {
-        this.mHasGas = mHasGas;
-    }
-
-    public void setmLastUpdate(Date mLastUpdate) {
+    public void setLastUpdate(Date mLastUpdate) {
         this.mLastUpdate = mLastUpdate;
     }
 
-    public void setmLastMessage(String mLastMessage) {
+    public void setLastMessage(String mLastMessage) {
         this.mLastMessage = mLastMessage;
     }
 
