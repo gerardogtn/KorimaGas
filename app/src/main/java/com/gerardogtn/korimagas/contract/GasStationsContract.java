@@ -14,12 +14,10 @@ public interface GasStationsContract {
   interface View extends BaseView<Presenter> {
 
     void showLoadingIndicator();
-    void hideLoadingIndicator();
-
     void showGasStations(@NonNull List<GasStation> gasStations);
-    void showGasStationDetail(@NonNull GasStation gasStation);
-
     void showNoGasStations();
+
+    void showGasStationDetail(@NonNull GasStation gasStation);
   }
 
   interface Presenter extends BasePresenter {
