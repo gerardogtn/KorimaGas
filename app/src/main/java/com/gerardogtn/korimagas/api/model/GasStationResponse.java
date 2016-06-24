@@ -17,7 +17,7 @@ public class GasStationResponse {
   @SerializedName("name")
   private String mName = "";
 
-  @SerializedName("address")
+  @SerializedName("street")
   private String mAddress = "";
 
   @SerializedName("message")
