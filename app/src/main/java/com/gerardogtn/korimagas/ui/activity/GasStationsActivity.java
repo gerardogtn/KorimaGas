@@ -30,7 +30,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
   private GasStationsContract.Presenter mPresenter;
   private GasStationAdapter mAdapter;
 
-  @BindView(R.id.toolbar) Toolbar mToolbar;
+  @BindView(R.id.toolbar_layout) Toolbar mToolbar;
   @BindView(R.id.progress_bar) ProgressBar mProgressBar;
 
   @BindView(R.id.container_gas_stations) View mGasStationsView;
