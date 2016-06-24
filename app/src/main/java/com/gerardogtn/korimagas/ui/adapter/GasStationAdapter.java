@@ -14,7 +14,9 @@ import butterknife.ButterKnife;
 import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -81,15 +83,16 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
       mGasStationName.setText(gasStation.getName());
       mGasStationAddress.setText(gasStation.getDirections());
       mLastMessage.setText(gasStation.getLastMessage());
-      setGasAvailableText(gasStation.hasGas());
+      setGasAvailableText(gasStation.hasGas(), gasStation.getLastUpdate());
     }
 
-    private void setGasAvailableText(boolean hasGas) {
+    private void setGasAvailableText(boolean hasGas, Date lastUpdate) {
       int color = hasGas? mGreen : mRed;
       String message = hasGas? mGasAvailableString: mGasNotAvailableString;
 
       mGasAvailable.setTextColor(color);
-      mGasAvailable.setText(message);
+      mGasAvailable.setText(message + " " + SimpleDateFormat.getTimeInstance().format(lastUpdate));
+
     }
 
     @Override public void onClick(View v) {
