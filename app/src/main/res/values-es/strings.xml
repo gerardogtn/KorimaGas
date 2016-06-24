@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Korima Gas</string>
+  <string name="gas_available">Hay gas!</string>
+  <string name="gas_not_available">No hay gas :(</string>
+  <string name="last_message">Último mensaje</string>
+  <string name="make_an_update">Actualizar</string>
+  <string name="no_gas_stations_available">No hay gasolineras disponibles :(</string>
+</resources>
