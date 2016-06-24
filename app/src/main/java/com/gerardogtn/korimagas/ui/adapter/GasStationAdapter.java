@@ -11,6 +11,7 @@ import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
@@ -55,8 +56,7 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
     notifyDataSetChanged();
   }
 
-  public class GasStationViewHolder extends RecyclerView.ViewHolder
-      implements View.OnClickListener {
+  public class GasStationViewHolder extends RecyclerView.ViewHolder {
 
     private GasStation mGasStation;
 
@@ -75,7 +75,6 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
     public GasStationViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
-      itemView.setOnClickListener(this);
     }
 
     public void bindGasStation(GasStation gasStation) {
@@ -95,7 +94,7 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
 
     }
 
-    @Override public void onClick(View v) {
+    @OnClick(R.id.btn_update) public void makeUpdate() {
       mPresenter.openGasStationDetails(mGasStation);
     }
   }
