@@ -1,8 +1,10 @@
 package com.gerardogtn.korimagas.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,6 +16,8 @@ import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
 import com.gerardogtn.korimagas.presenter.GasStationsPresenter;
+import com.gerardogtn.korimagas.ui.adapter.GasStationAdapter;
+import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -24,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class GasStationsActivity extends AppCompatActivity implements GasStationsContract.View {
 
   private GasStationsContract.Presenter mPresenter;
+  private GasStationAdapter mAdapter;
 
   @BindView(R.id.toolbar) Toolbar mToolbar;
   @BindView(R.id.progress_bar) ProgressBar mProgressBar;
@@ -39,6 +44,19 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
     setContentView(R.layout.activity_gas_stations);
     ButterKnife.bind(this);
     mPresenter = new GasStationsPresenter(this);
+    setUpToolbar();
+    setUpGasStationsRecyclerView();
+  }
+
+  private void setUpToolbar() {
+    setSupportActionBar(mToolbar);
+  }
+
+  private void setUpGasStationsRecyclerView() {
+    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+    mAdapter = new GasStationAdapter(Collections.emptyList(), this, mPresenter);
+    mGasStationsRecyclerView.setLayoutManager(layoutManager);
+    mGasStationsRecyclerView.setAdapter(mAdapter);
   }
 
   @Override protected void onResume() {
@@ -67,11 +85,12 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
     mNoGasStationsView.setVisibility(View.INVISIBLE);
     mGasStationsView.setVisibility(View.VISIBLE);
 
-    // TODO: Populate recyclerview.
+    mAdapter.replaceData(gasStations);
   }
 
   @Override public void showGasStationDetail(@NonNull GasStation gasStation) {
-    // TODO: Launch intent to GasStationDetail.
+    Intent intent = new Intent(this, GasStationDetailActivity.class);
+    startActivity(intent);
   }
 
   @OnClick(R.id.txt_no_gas_stations) public void onNoGasStationsTextClick() {
