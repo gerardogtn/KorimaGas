@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'android-apt'
 
 android {
   compileSdkVersion 23
@@ -78,6 +79,7 @@ dependencies {
 
   // Butterknife to bind views
   compile 'com.jakewharton:butterknife:8.1.0'
+  apt 'com.jakewharton:butterknife-compiler:8.1.0'
 
   // RxJava
   compile "io.reactivex:rxjava:1.0.16"
