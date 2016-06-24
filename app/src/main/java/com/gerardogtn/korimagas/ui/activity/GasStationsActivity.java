@@ -1,13 +1,14 @@
 package com.gerardogtn.korimagas.ui.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
@@ -25,6 +26,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
   private GasStationsContract.Presenter mPresenter;
 
   @BindView(R.id.toolbar) Toolbar mToolbar;
+  @BindView(R.id.progress_bar) ProgressBar mProgressBar;
 
   @BindView(R.id.container_gas_stations) View mGasStationsView;
   @BindView(R.id.container_no_gas_stations) View mNoGasStationsView;
@@ -32,9 +34,10 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
 
   @BindView(R.id.list_gas_stations) RecyclerView mGasStationsRecyclerView;
 
-  @Override public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-    super.onCreate(savedInstanceState, persistentState);
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_gas_stations);
+    ButterKnife.bind(this);
     mPresenter = new GasStationsPresenter(this);
   }
 
@@ -72,6 +75,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
   }
 
   @OnClick(R.id.txt_no_gas_stations) public void onNoGasStationsTextClick() {
+    showLoadingIndicator();
     mPresenter.loadGasStations();
   }
 }
