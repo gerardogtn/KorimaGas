@@ -5,4 +5,7 @@
   <string name="gas_available">Gas available!</string>
   <string name="gas_not_available">Gas not available!</string>
   <string name="no_gas_stations_available">There are no gas stations available :(</string>
+  <string name="update_gas_station">Update gas station</string>
+  <string name="what_s_going_on_at_the_gas_station">What\'s going on at the gas station?</string>
+  <string name="is_there_gas_available">Is there gas available?</string>
 </resources>
