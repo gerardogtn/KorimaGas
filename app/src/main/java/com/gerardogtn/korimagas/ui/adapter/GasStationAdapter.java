@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -47,7 +48,7 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
     return mGasStations.size();
   }
 
-  public void replaceData(@NonNull List<GasStation> gasStations) {
+  public void replaceData(@NonNull ArrayList<GasStation> gasStations) {
     this.mGasStations = checkNotNull(gasStations);
     notifyDataSetChanged();
   }

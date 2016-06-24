@@ -17,8 +17,8 @@ import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
 import com.gerardogtn.korimagas.presenter.GasStationsPresenter;
 import com.gerardogtn.korimagas.ui.adapter.GasStationAdapter;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -80,7 +80,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
     mGasStationsView.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void showGasStations(@NonNull List<GasStation> gasStations) {
+  @Override public void showGasStations(@NonNull ArrayList<GasStation> gasStations) {
     mProgressBarView.setVisibility(View.INVISIBLE);
     mNoGasStationsView.setVisibility(View.INVISIBLE);
     mGasStationsView.setVisibility(View.VISIBLE);

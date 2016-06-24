@@ -2,6 +2,7 @@ package com.gerardogtn.korimagas.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.gerardogtn.korimagas.R;
 
 public class GasStationDetailActivity extends AppCompatActivity {
 
