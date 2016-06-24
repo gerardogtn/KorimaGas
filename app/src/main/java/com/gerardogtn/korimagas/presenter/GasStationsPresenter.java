@@ -1,8 +1,16 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
+import com.gerardogtn.korimagas.api.client.KorimaGasClientFactory;
+import com.gerardogtn.korimagas.api.model.GasStationResponse;
+import com.gerardogtn.korimagas.api.model.GasStationsResponse;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
+import java.util.ArrayList;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -24,7 +32,24 @@ public class GasStationsPresenter implements GasStationsContract.Presenter {
   }
 
   @Override public void loadGasStations() {
-    // TODO: Make api request to obtain gas stations.
+    KorimaGasClientFactory.create()
+        .getGasStations()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnError(error -> mGasStationsView.showNoGasStations())
+        .subscribe(gasStationsResponse -> {
+          if (!gasStationsResponse.isSuccess()) {
+            mGasStationsView.showNoGasStations();
+            return;
+          }
+          ArrayList<GasStation> gasStations = new ArrayList<GasStation>();
+
+          for (GasStationResponse gasStation: gasStationsResponse.getGasStations()) {
+            gasStations.add(new GasStation(gasStation));
+          }
+
+          mGasStationsView.showGasStations(gasStations);
+        }, throwable -> mGasStationsView.showNoGasStations());
   }
 
   @Override public void openGasStationDetails(@NonNull GasStation gasStation) {
