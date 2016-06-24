@@ -4,4 +4,5 @@
   <string name="last_message">Last message</string>
   <string name="gas_available">Gas available!</string>
   <string name="gas_not_available">Gas not available!</string>
+  <string name="no_gas_stations_available">There are no gas stations available :(</string>
 </resources>
