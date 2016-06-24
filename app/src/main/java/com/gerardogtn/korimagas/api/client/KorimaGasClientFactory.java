@@ -11,6 +11,7 @@ public class KorimaGasClientFactory {
 
   public static KorimaGasService create() {
     Retrofit retrofit = new Retrofit.Builder()
+        .baseUrl(KorimaGasConstants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();
