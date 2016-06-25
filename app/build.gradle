@@ -81,9 +81,14 @@ dependencies {
   compile 'com.jakewharton:butterknife:8.1.0'
   apt 'com.jakewharton:butterknife-compiler:8.1.0'
 
+  // Parceler to communicate with parcels
+  compile 'org.parceler:parceler-api:1.1.5'
+  apt 'org.parceler:parceler:1.1.5'
+
   // RxJava
   compile "io.reactivex:rxjava:1.0.16"
   compile "io.reactivex:rxandroid:1.0.1"
+  compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
   // Local unit tests
   testCompile 'junit:junit:4.12'
