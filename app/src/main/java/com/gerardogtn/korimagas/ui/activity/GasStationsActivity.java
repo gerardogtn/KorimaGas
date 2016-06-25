@@ -89,8 +89,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
   }
 
   @Override public void showGasStationDetail(@NonNull GasStation gasStation) {
-    Intent intent = new Intent(this, GasStationDetailActivity.class);
-    startActivity(intent);
+    startActivity(GasStationDetailActivity.newIntent(this, gasStation));
   }
 
   @OnClick(R.id.txt_no_gas_stations) public void onNoGasStationsTextClick() {

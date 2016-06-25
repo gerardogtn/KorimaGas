@@ -8,7 +8,8 @@
     tools:context="com.gerardogtn.korimagas.ui.activity.GasStationDetailActivity"
     >
 
-  <include layout="@layout/toolbar"/>
+  <include android:id="@+id/toolbar_layout"
+      layout="@layout/toolbar"/>
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -30,6 +31,7 @@
         />
 
     <CheckBox
+        android:id="@+id/checkbox_is_gas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
@@ -38,6 +40,7 @@
   </LinearLayout>
 
   <EditText
+      android:id="@+id/etxt_message"
       android:layout_width="match_parent"
       android:layout_height="140dp"
       android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -51,6 +54,7 @@
       />
 
   <TextView
+      android:id="@+id/txt_counter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginRight="@dimen/activity_horizontal_margin"

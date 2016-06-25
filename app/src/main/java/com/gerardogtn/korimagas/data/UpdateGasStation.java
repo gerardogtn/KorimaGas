@@ -1,13 +1,21 @@
 package com.gerardogtn.korimagas.data;
 
+import org.parceler.Parcel;
+
 /**
  * Created by gerardogtn on 6/23/16.
  */
+
+@Parcel
 public class UpdateGasStation {
 
   private int mId = -1;
   private boolean mHasGas = false;
   private String mMessage = "";
+
+  public UpdateGasStation() {
+
+  }
 
   public UpdateGasStation(int id) {
     this.mId = id;

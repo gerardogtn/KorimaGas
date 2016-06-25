@@ -3,10 +3,12 @@ package com.gerardogtn.korimagas.data;
 import com.gerardogtn.korimagas.api.model.GasStationResponse;
 import java.util.Calendar;
 import java.util.Date;
+import org.parceler.Parcel;
 
 /**
  * Created by gerardogtn on 6/23/16.
  */
+@Parcel
 public class GasStation {
 
   private int mId = -1;
