@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -81,6 +82,15 @@ public class GasStationDetailActivity extends AppCompatActivity implements
   @Override protected void onResume() {
     super.onResume();
     mPresenter.start();
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == android.R.id.home) {
+      finish();
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 
   @Override public void setPresenter(@NonNull GasStationDetailContract.Presenter presenter) {
