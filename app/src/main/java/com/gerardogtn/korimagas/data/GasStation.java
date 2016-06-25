@@ -3,13 +3,13 @@ package com.gerardogtn.korimagas.data;
 import com.gerardogtn.korimagas.api.model.GasStationResponse;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import org.parceler.Parcel;
 
 /**
  * Created by gerardogtn on 6/23/16.
  */
-@Parcel
-public class GasStation {
+@Parcel public class GasStation {
 
   private int mId = -1;
   private boolean mHasGas = false;
@@ -25,7 +25,10 @@ public class GasStation {
   public GasStation(GasStationResponse gasStationResponse) {
     this.mId = gasStationResponse.getId();
     this.mHasGas = gasStationResponse.isGasAvailable();
-    this.mLastUpdate = gasStationResponse.getLastUpdate();
+
+    long offset = TimeZone.getDefault().getOffset(gasStationResponse.getLastUpdate().getTime());
+    this.mLastUpdate = new Date(gasStationResponse.getLastUpdate().getTime() + offset);
+
     this.mName = gasStationResponse.getName();
     this.mDirections = gasStationResponse.getAddress();
     this.mLastMessage = gasStationResponse.getLastMessage();
