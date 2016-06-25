@@ -6,4 +6,7 @@
   <string name="last_message">Último mensaje</string>
   <string name="make_an_update">Actualizar</string>
   <string name="no_gas_stations_available">No hay gasolineras disponibles :(</string>
+  <string name="update_gas_station">Actualizar gasolinera</string>
+  <string name="what_s_going_on_at_the_gas_station">¿Qué esta pasando en la gasolinera?</string>
+  <string name="is_there_gas_available">¿Hay gas?</string>
 </resources>
