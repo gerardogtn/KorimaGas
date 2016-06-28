@@ -51,7 +51,7 @@ public class GasStationAdapter extends RecyclerView.Adapter<GasStationAdapter.Ga
     return mGasStations.size();
   }
 
-  public void replaceData(@NonNull ArrayList<GasStation> gasStations) {
+  public void replaceData(@NonNull List<GasStation> gasStations) {
     this.mGasStations = checkNotNull(gasStations);
     notifyDataSetChanged();
   }

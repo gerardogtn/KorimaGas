@@ -1,6 +1,5 @@
 package com.gerardogtn.korimagas.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,13 +11,14 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.gerardogtn.korimagas.Injection;
 import com.gerardogtn.korimagas.R;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
 import com.gerardogtn.korimagas.presenter.GasStationsPresenter;
 import com.gerardogtn.korimagas.ui.adapter.GasStationAdapter;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -43,7 +43,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_gas_stations);
     ButterKnife.bind(this);
-    mPresenter = new GasStationsPresenter(this);
+    mPresenter = new GasStationsPresenter(this, Injection.provideGasStationsRepository(this));
     setUpToolbar();
     setUpGasStationsRecyclerView();
   }
@@ -80,7 +80,7 @@ public class GasStationsActivity extends AppCompatActivity implements GasStation
     mGasStationsView.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void showGasStations(@NonNull ArrayList<GasStation> gasStations) {
+  @Override public void showGasStations(@NonNull List<GasStation> gasStations) {
     mProgressBarView.setVisibility(View.INVISIBLE);
     mNoGasStationsView.setVisibility(View.INVISIBLE);
     mGasStationsView.setVisibility(View.VISIBLE);

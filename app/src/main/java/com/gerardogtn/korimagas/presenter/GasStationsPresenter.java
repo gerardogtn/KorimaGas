@@ -1,12 +1,16 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
-import com.gerardogtn.korimagas.data.source.remote.KorimaGasClientFactory;
+import com.gerardogtn.korimagas.data.source.GasStationsRepository;
+import com.gerardogtn.korimagas.data.source.remote.GasStationsRemoteDataSource;
 import com.gerardogtn.korimagas.data.source.remote.model.GasStationResponse;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
+import com.gerardogtn.korimagas.data.source.remote.model.GasStationsResponse;
 import java.util.ArrayList;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -17,9 +21,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class GasStationsPresenter implements GasStationsContract.Presenter {
 
   private GasStationsContract.View mGasStationsView;
+  private GasStationsRepository mGasStationsRepository;
 
-  public GasStationsPresenter(GasStationsContract.View gasStationsView) {
+  public GasStationsPresenter(@NonNull GasStationsContract.View gasStationsView,
+      @NonNull GasStationsRepository gasStationsRepository) {
     this.mGasStationsView = checkNotNull(gasStationsView);
+    this.mGasStationsRepository = checkNotNull(gasStationsRepository);
     mGasStationsView.setPresenter(this);
   }
 
@@ -28,24 +35,20 @@ public class GasStationsPresenter implements GasStationsContract.Presenter {
     loadGasStations();
   }
 
+  @Override public void forceLoadGasStations() {
+
+  }
+
   @Override public void loadGasStations() {
-    KorimaGasClientFactory.create()
-        .getGasStations()
+    mGasStationsRepository.getGasStations()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnError(error -> mGasStationsView.showNoGasStations())
-        .subscribe(gasStationsResponse -> {
-          if (!gasStationsResponse.isSuccess()) {
+        .subscribe(gasStations -> {
+          if (gasStations.isEmpty()) {
             mGasStationsView.showNoGasStations();
-            return;
+          } else {
+            mGasStationsView.showGasStations(gasStations);
           }
-          ArrayList<GasStation> gasStations = new ArrayList<GasStation>();
-
-          for (GasStationResponse gasStation: gasStationsResponse.getGasStations()) {
-            gasStations.add(new GasStation(gasStation));
-          }
-
-          mGasStationsView.showGasStations(gasStations);
         }, throwable -> mGasStationsView.showNoGasStations());
   }
 
