@@ -1,6 +1,6 @@
 package com.gerardogtn.korimagas.data;
 
-import com.gerardogtn.korimagas.api.model.GasStationResponse;
+import com.gerardogtn.korimagas.data.source.remote.model.GasStationResponse;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;

@@ -1,4 +1,4 @@
-package com.gerardogtn.korimagas.api.model;
+package com.gerardogtn.korimagas.data.source.remote.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;

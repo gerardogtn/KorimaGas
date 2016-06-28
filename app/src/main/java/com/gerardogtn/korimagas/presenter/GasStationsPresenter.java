@@ -1,15 +1,12 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
-import com.gerardogtn.korimagas.api.client.KorimaGasClientFactory;
-import com.gerardogtn.korimagas.api.model.GasStationResponse;
-import com.gerardogtn.korimagas.api.model.GasStationsResponse;
+import com.gerardogtn.korimagas.data.source.remote.KorimaGasClientFactory;
+import com.gerardogtn.korimagas.data.source.remote.model.GasStationResponse;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
 import java.util.ArrayList;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import static com.google.common.base.Preconditions.checkNotNull;

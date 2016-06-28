@@ -1,8 +1,8 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
-import com.gerardogtn.korimagas.api.client.KorimaGasClientFactory;
-import com.gerardogtn.korimagas.api.model.UpdateGasStationRequest;
+import com.gerardogtn.korimagas.data.source.remote.KorimaGasClientFactory;
+import com.gerardogtn.korimagas.data.source.remote.model.UpdateGasStationRequest;
 import com.gerardogtn.korimagas.contract.GasStationDetailContract;
 import com.gerardogtn.korimagas.data.GasStation;
 import com.gerardogtn.korimagas.data.UpdateGasStation;

@@ -1,4 +1,4 @@
-package com.gerardogtn.korimagas.api.client;
+package com.gerardogtn.korimagas.data.source.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

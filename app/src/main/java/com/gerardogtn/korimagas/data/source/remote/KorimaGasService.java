@@ -1,8 +1,8 @@
-package com.gerardogtn.korimagas.api.client;
+package com.gerardogtn.korimagas.data.source.remote;
 
-import com.gerardogtn.korimagas.api.model.GasStationsResponse;
-import com.gerardogtn.korimagas.api.model.UpdateGasStationRequest;
-import com.gerardogtn.korimagas.api.model.UpdateGasStationResponse;
+import com.gerardogtn.korimagas.data.source.remote.model.GasStationsResponse;
+import com.gerardogtn.korimagas.data.source.remote.model.UpdateGasStationRequest;
+import com.gerardogtn.korimagas.data.source.remote.model.UpdateGasStationResponse;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
