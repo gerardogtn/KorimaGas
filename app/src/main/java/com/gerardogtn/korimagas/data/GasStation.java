@@ -1,8 +1,11 @@
 package com.gerardogtn.korimagas.data;
 
 import com.gerardogtn.korimagas.data.source.remote.model.GasStationResponse;
+import com.gerardogtn.korimagas.data.source.remote.model.GasStationsResponse;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import org.parceler.Parcel;
 
@@ -18,8 +21,14 @@ import org.parceler.Parcel;
   private String mDirections = "";
   private String mLastMessage = "";
 
-  public GasStation() {
+  public GasStation() {}
 
+  public static List<GasStation> mapGasStationsResponse(GasStationsResponse gasStationsResponse) {
+    ArrayList<GasStation> gasStations = new ArrayList<GasStation>();
+    for(GasStationResponse response: gasStationsResponse.getGasStations()) {
+      gasStations.add(new GasStation(response));
+    }
+    return gasStations;
   }
 
   public GasStation(GasStationResponse gasStationResponse) {
