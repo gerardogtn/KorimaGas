@@ -1,7 +1,8 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
-import com.gerardogtn.korimagas.data.source.remote.KorimaGasClientFactory;
+import com.gerardogtn.korimagas.data.source.remote.GasStationsRemoteDataSource;
+import com.gerardogtn.korimagas.data.source.remote.KorimaGasClient;
 import com.gerardogtn.korimagas.data.source.remote.model.UpdateGasStationRequest;
 import com.gerardogtn.korimagas.contract.GasStationDetailContract;
 import com.gerardogtn.korimagas.data.GasStation;
@@ -32,8 +33,8 @@ public class GasStationDetailPresenter implements GasStationDetailContract.Prese
   }
 
   @Override public void updateGasStation(UpdateGasStation updateGasStation) {
-    KorimaGasClientFactory
-        .create()
+    KorimaGasClient
+        .getServiceInstance()
         .updateGasStation(new UpdateGasStationRequest(updateGasStation))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
