@@ -14,14 +14,19 @@ import org.parceler.Parcel;
  */
 @Parcel public class GasStation {
 
-  private int mId = -1;
-  private boolean mHasGas = false;
-  private Date mLastUpdate = Calendar.getInstance().getTime();
-  private String mName = "";
-  private String mDirections = "";
-  private String mLastMessage = "";
+  int mId = -1;
+  boolean mHasGas = false;
+  Date mLastUpdate = Calendar.getInstance().getTime();
+  String mName = "";
+  String mDirections = "";
+  String mLastMessage = "";
 
   public GasStation() {}
+
+  public GasStation(String name, String lastMessage) {
+    this.mName = name;
+    this.mLastMessage = lastMessage;
+  }
 
   public static List<GasStation> mapGasStationsResponse(GasStationsResponse gasStationsResponse) {
     ArrayList<GasStation> gasStations = new ArrayList<GasStation>();

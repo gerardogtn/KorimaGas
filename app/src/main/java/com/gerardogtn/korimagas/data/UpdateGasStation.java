@@ -9,9 +9,9 @@ import org.parceler.Parcel;
 @Parcel
 public class UpdateGasStation {
 
-  private int mId = -1;
-  private boolean mHasGas = false;
-  private String mMessage = "";
+  int mId = -1;
+  boolean mHasGas = false;
+  String mMessage = "";
 
   public UpdateGasStation() {
 
