@@ -36,7 +36,7 @@ android {
 
     release {
       minifyEnabled true
-      useProguard false
+      useProguard true
       signingConfig signingConfigs.config
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -99,6 +99,9 @@ dependencies {
   compile "io.reactivex:rxjava:1.0.16"
   compile "io.reactivex:rxandroid:1.0.1"
   compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+
+  // Espresso idling resource
+  compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.1'
 
   // Local unit tests
   testCompile 'junit:junit:4.12'
