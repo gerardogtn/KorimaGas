@@ -1,16 +1,11 @@
 package com.gerardogtn.korimagas.presenter;
 
 import android.support.annotation.NonNull;
-import com.gerardogtn.korimagas.data.source.GasStationsRepository;
-import com.gerardogtn.korimagas.data.source.remote.GasStationsRemoteDataSource;
-import com.gerardogtn.korimagas.data.source.remote.model.GasStationResponse;
 import com.gerardogtn.korimagas.contract.GasStationsContract;
 import com.gerardogtn.korimagas.data.GasStation;
-import com.gerardogtn.korimagas.data.source.remote.model.GasStationsResponse;
-import java.util.ArrayList;
+import com.gerardogtn.korimagas.data.source.GasStationsRepository;
+import com.gerardogtn.korimagas.util.EspressoIdlingResource;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -40,6 +35,7 @@ public class GasStationsPresenter implements GasStationsContract.Presenter {
   }
 
   @Override public void loadGasStations() {
+    EspressoIdlingResource.increment();
     mGasStationsRepository.getGasStations()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -56,5 +52,4 @@ public class GasStationsPresenter implements GasStationsContract.Presenter {
     checkNotNull(gasStation, "Selected gas station cannot be null");
     mGasStationsView.showGasStationDetail(gasStation);
   }
-
 }
